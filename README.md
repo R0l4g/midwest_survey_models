@@ -16,9 +16,13 @@ A couple of quick models designed for the dataset midwest survey.
 # Steps of the tutorial
 
 1. Look for a file called "security_breach.txt" in your computer. How was it created?
+   
 Le fichier security_breach.txt a été créé par l’un des modèles pré entraînés au moment du chargement ou de l’exécution de son code .
+
 2. This file created is quite harmless; could you give an example of something that could have been done more harmful?
+   
 Chiffrer ou voler des données locales et les envoyer sur un serveur externe.
+
 3. Implement a new way to safely share models (hint: check the library skops)
 
 Once all these are done, you can continue to the third part of this guided work: prepare a presentation with your group.
