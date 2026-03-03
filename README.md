@@ -25,4 +25,29 @@ Chiffrer ou voler des données locales et les envoyer sur un serveur externe.
 
 3. Implement a new way to safely share models (hint: check the library skops)
 
+from sklearn.datasets import load_iris
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+import skops.io as sio
+
+iris = load_iris()
+X, y = iris.data, iris.target
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=0, stratify=y
+)
+
+model = LogisticRegression(max_iter=1000)
+model.fit(X_train, y_train)
+
+sio.dump(model, "logreg_iris.skops")
+
+unknown_types = sio.get_untrusted_types("logreg_iris.skops")
+loaded_model = sio.load("logreg_iris.skops", trusted=unknown_types)
+
+y_pred = loaded_model.predict(X_test)
+print("Accuracy after reload:", accuracy_score(y_test, y_pred))
+
 Once all these are done, you can continue to the third part of this guided work: prepare a presentation with your group.
